@@ -34,13 +34,13 @@ Currently supports:
       "date": "2025-06-23 14:30",
       "proposals": "12",
       "description": "We are looking for a React developer...",
-      "budget": "R$ 500,00"
+      "budget": "$ 500,00"
     }
   ]
 }
 ```
 
-Installation
+## Installation
 
 Run the following commands:
 ```bash
