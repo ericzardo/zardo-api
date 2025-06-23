@@ -1,11 +1,13 @@
-const fastify = require('fastify')({ logger: false });
+require('dotenv').config(); 
+
+const fastify = require('fastify')({ logger: true });
 const scrapeRoutes = require('./routes/scrape');
 
 fastify.register(scrapeRoutes);
 
 const start = async () => {
   try {
-    await fastify.listen({ port: Number(PORT), host: '0.0.0.0' });
+    await fastify.listen({ port: Number(process.env.PORT), host: '0.0.0.0' });
     console.log('🚀 Server ready at http://localhost:3000');
   } catch (err) {
     fastify.log.error(err);
