@@ -4,7 +4,9 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
 async function getBrowserPage() {
-  const browser = await puppeteer.launch({ headless: 'new' });
+  const browser = await puppeteer.launch({ 
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'], });
   const page = await browser.newPage();
 
   await page.setUserAgent(
