@@ -1,3 +1,5 @@
+const workanaScrape = require('../workana');
+
 async function routes(fastify, options) {
   fastify.get('/scrape', async (request, reply) => {
     const { platform, search, maxPages } = request.query;
@@ -11,7 +13,7 @@ async function routes(fastify, options) {
     let scraperFn;
     switch (platform.toLowerCase()) {
       case 'workana':
-        scraperFn = require('../workana');
+        scraperFn = workanaScrape;
         break;
       default:
         return reply.status(400).send({ error: 'Unsupported platform' });
