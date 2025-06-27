@@ -2,7 +2,7 @@ const workanaScraper = require('../workana');
 
 async function routes(fastify, options) {
   fastify.get('/scrape', async (request, reply) => {
-    const { platform, search } = request.query;
+    const { platform, search, maxPages } = request.query;
 
     if (!platform || !search) {
       return reply.status(400).send({ error: 'Missing platform or search' });
@@ -17,8 +17,11 @@ async function routes(fastify, options) {
         return reply.status(400).send({ error: 'Unsupported platform' });
     }
 
+    const parsedMaxPages = parseInt(maxPages, 10);
+    const limitPages = isNaN(parsedMaxPages) ? 2 : parsedMaxPages; // fallback padrão
+
     try {
-      const projects = await scraperFn(search);
+      const projects = await scraperFn(search, limitPages);
       return { projects };
     } catch (error) {
       fastify.log.error(error);
