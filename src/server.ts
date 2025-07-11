@@ -8,7 +8,7 @@ async function main() {
   await app.register(routes);
 
   try {
-    await app.listen({ port: parseInt(process.env.PORT || '9999', 10) });
+    await app.listen({ port: parseInt(process.env.PORT || '9999', 10), host: '0.0.0.0' });
     console.log(`🚀 Server is running on http://localhost:${process.env.PORT}`);
   } catch (err) {
     app.log.error(err);
