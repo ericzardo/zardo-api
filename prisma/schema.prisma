@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model FreelancerKeyword {
+  id        Int      @id @default(autoincrement())
+  keyword   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FreelancerCron {
+  id        Int      @id @default(autoincrement())
+  isActive  Boolean  @default(false)
+  interval  Int
+  unit      String
+  time      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
