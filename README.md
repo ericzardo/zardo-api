@@ -30,47 +30,41 @@ npm run dev
 ### Freelancer Scraping Module
  - Endpoint prefix: /scrape/freelancer
 
-`GET /scrape/freelancer`
+> `GET /scrape/freelancer`
+  *Scrape freelance job listings based on platform and keyword.*
+    - Query Parameters:
+      - Parameter	Type	Required	Description
+      - platform	string	Yes	Platform name, e.g. workana
+      - search	string	Optional	Search keyword, e.g. automation
 
-**Scrape freelance job listings based on platform and keyword.**
-  - Query Parameters:
-    - Parameter	Type	Required	Description
-    - platform	string	Yes	Platform name, e.g. workana
-    - search	string	Optional	Search keyword, e.g. automation
+> `POST /scrape/freelancer/keywords`
+  Add a keyword to the watchlist.
+    ```json
+    {
+      "keyword": "automation"
+    }
+    ```
+> `GET /scrape/freelancer/keywords`
+  List all monitored keywords.
 
-`POST /scrape/freelancer/keywords`
+> `DELETE /scrape/freelancer/keywords/:keyword`
+  Remove a keyword from monitoring.
 
-Add a keyword to the watchlist.
-```json
-{
-  "keyword": "automation"
-}
-```
-`GET /scrape/freelancer/keywords`
+> `GET /scrape/freelancer/cron`
+  Get configured scheduled scraping jobs.
 
-List all monitored keywords.
+> `POST /scrape/freelancer/cron`
+  Add a new cron job to schedule scraping.
+    ```json
+    {
+      "platform": "workana",
+      "interval": "0 */6 * * *"
+    }
+    ```
 
-`DELETE /scrape/freelancer/keywords/:keyword`
+> `PUT /scrape/freelancer/cron`
+  Update existing scheduled jobs.
 
-Remove a keyword from monitoring.
-
-`GET /scrape/freelancer/cron`
-
-Get configured scheduled scraping jobs.
-
-`POST /scrape/freelancer/cron`
-
-Add a new cron job to schedule scraping.
-```json
-{
-  "platform": "workana",
-  "interval": "0 */6 * * *"
-}
-```
-
-`PUT /scrape/freelancer/cron`
-
-Update existing scheduled jobs.
 ---
 ## 🧰 Technologies
 
