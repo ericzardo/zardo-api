@@ -9,9 +9,10 @@ export interface ParsedProject {
   description: string;
   budget: string | null;
   source: 'workana';
+  keyword: string | null
 }
 
-export function parseProjects(rawProjects: RawProject[]): ParsedProject[] {
+export function parseProjects(rawProjects: RawProject[], querySearch: string): ParsedProject[] {
   return rawProjects.map((project) => ({
     title: project.title,
     link: project.link,
@@ -20,5 +21,6 @@ export function parseProjects(rawProjects: RawProject[]): ParsedProject[] {
     description: project.description,
     budget: project.budget,
     source: 'workana',
+    keyword: querySearch
   }));
 }

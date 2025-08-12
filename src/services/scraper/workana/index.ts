@@ -23,7 +23,7 @@ export async function runWorkanaScraper(querySearch: string = '', maxPages = 5) 
 
       await expandDescriptions(page);
       const rawProjects = await extractProjectData(page);
-      const parsedProjects = parseProjects(rawProjects);
+      const parsedProjects = parseProjects(rawProjects, querySearch);
 
       allProjects.push(...parsedProjects);
     }
